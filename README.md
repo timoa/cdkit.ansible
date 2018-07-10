@@ -1,10 +1,10 @@
-# CDKit: Ansible
+# [CDKit](https://github.com/timoa/cdkit): Ansible
 
-*CDKit is a framework that helps to deploy mobile apps (iOS and Android) to the app stores (iTunes and Goole Play).*
+*[CDKit](https://github.com/timoa/cdkit) is a framework that helps to deploy mobile apps (iOS and Android) to the app stores (iTunes and Goole Play).*
 
 ## Getting started
 
-Ansible is a configuration manager that let you run scripts (playbooks) on a small to large number of computers.
+[Ansible](https://www.ansible.com/) is a configuration manager that let you run scripts (playbooks) on a small to large number of computers.
 
 It's agentless and needs only a SSH connexion to the computers you want to update.
 
