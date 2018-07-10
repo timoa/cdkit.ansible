@@ -1,0 +1,24 @@
+# CDKit Ansible configuration
+# /opt/ansible/hosts
+
+# Inventory ---------------------------------------------------
+
+[servers]
+gocd
+
+[agents]
+agent01 ansible_port=80122
+agent02 ansible_port=80222
+agent03 ansible_port=80322
+
+# Vars --------------------------------------------------------
+
+[servers:vars]
+ansible_host=localhost
+ansible_connection=local
+
+[agents:vars]
+ansible_host=go.your-domain.com
+ansible_connection=ssh
+ansible_user=go
+ansible_become_pass="{{ lookup('file', '/opt/ansible/vaultpasswdfile.yml') }}"
