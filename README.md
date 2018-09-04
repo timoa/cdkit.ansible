@@ -8,11 +8,11 @@
 
 It's agentless and needs only a SSH connexion to the computers you want to update.
 
-We will use Ansible to install and maintain the Android SDK, Java 8, Fastlane, SonarQube scanner, ImageMagick, etc. on the GO.CD agents
+We will use Ansible to install and maintain the Android SDK, Java 8, Fastlane, SonarQube scanner, ImageMagick, etc. on the Go.CD agents
 
 ## Prerequisites
 
-Before you start, you need to have followed the steps to install the GO.CD server and agent(s)
+Before you start, you need to have followed the steps to install the Go.CD server and agent(s)
 
 ## Server
 
@@ -141,13 +141,13 @@ ansible-galaxy install geerlingguy.homebrew
 ansible-galaxy install srsp.oracle-java
 ```
 
-## GO.CD Agent(s)
+## Go.CD Agent(s)
 
 ### Install Homebrew
 
 [Homebrew](https://brew.sh/) is the "The missing package manager for macOS" and it will helps to install some software automatically.
 
-You need to run this command in a terminal on each of your GO.CD agents:
+You need to run this command in a terminal on each of your Go.CD agents:
 
 ``` bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -188,17 +188,16 @@ crontab /opt/ansible/crontab.txt
 Content of the `crontab.txt`:
 
 ``` bash
-# Ansible - Update Homebrew packages in all GO.CD agents every day at 1:00 am
+# Ansible - Update Homebrew packages in all Go.CD agents every day at 1:00 am
 0 0 1 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/homebrewUpdate.log ; ansible-playbook /opt/ansible/playbooks/homebrewUpdate.yml >> /opt/ansible/logs/homebrewUpdate.log
 
-# Ansible - Update Java JDK packages in all GO.CD agents every Monday at 2:00 am
+# Ansible - Update Java JDK packages in all Go.CD agents every Monday at 2:00 am
 0 0 2 * MON echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/javaUpdate.log ; ansible-playbook /opt/ansible/playbooks/javaUpdate.yml >> /opt/ansible/logs/javaUpdate.log
 
-# Ansible - Update Android SDK packages in all GO.CD agents every day at 3:00 am
+# Ansible - Update Android SDK packages in all Go.CD agents every day at 3:00 am
 0 0 3 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/androidSdkPkgUpdate.log ; ansible-playbook /opt/ansible/playbooks/androidSdkPkgUpdate.yml >> /opt/ansible/logs/androidSdkPkgUpdate.log
 ```
 
 ## TODO
-
-* Create a playbook role to install GO.CD agent software
-* Add the Xcode playbook role to install/update Xcode on the GO.CD agents
+* Create a playbook role to install Go.CD agent software
+* Add the Xcode playbook role to install/update Xcode on the Go.CD agents
