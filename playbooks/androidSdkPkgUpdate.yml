@@ -1,9 +1,0 @@
----
-# Playbook for installing Android SDK updates in all the GO.CD agents
-- hosts: agents
-  gather_facts: no
-
-  tasks:
-
-   - name: updating packages in all GO agents
-     shell: cd /Users/go/Library/android-sdk-macosx && echo "y" | tools/bin/sdkmanager --update
