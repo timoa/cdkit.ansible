@@ -21,4 +21,4 @@ ansible_connection=local
 ansible_host=go.your-domain.com
 ansible_connection=ssh
 ansible_user=go
-ansible_become_pass="{{ lookup('file', '/opt/ansible/vaultpasswdfile.yml') }}"
+ansible_become_pass="{{ lookup('file', '/opt/ansible/.vaultpasswordfile') }}"
