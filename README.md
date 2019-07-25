@@ -26,7 +26,7 @@ Please refer to this page to [install Ansible for your Linux distribution](https
 
 If you installed previously Homebrew, let's use it to install Ansible with this command:
 
-``` bash
+```bash
 brew install ansible
 ```
 
@@ -36,7 +36,7 @@ brew install ansible
 
 After you installed Ansible, you need to checkout this repository to the folder `/opt/ansible` (both Linux or macOS):
 
-``` bash
+```bash
 [sudo] mkdir /opt/ansible
 git clone git@github.com:timoa/cdkit.ansible.git /opt/ansible
 ```
@@ -45,26 +45,49 @@ git clone git@github.com:timoa/cdkit.ansible.git /opt/ansible
 
 In case of the `hosts` file has not been packaged with your Ansible installation, you can use the template in this GIT repository or the folder `/opt/ansible/hosts`.
 
-``` bash
+```bash
 [sudo] cp /opt/ansible/hosts /etc/ansible/hosts
 ```
 
-#### Create the Vault password file
+#### Create your Vault
 
-To save securely your hosts credentials, we will use an Ansible vault password file.
+To save securely your hosts credentials or any other sensitive information (API Keys, etc.), we will use an Ansible Vault.
 
-To create it, just type this command:
+To create one for the agents, just type this command:
 
-``` bash
-ansible-vault create /opt/ansible/vaultpasswordfile.yml
+```bash
+ansible-vault create /opt/ansible/vault_agents
 ```
 
+```bash
+ansible_sudo_pass: {agents user password}
+```
+
+You can also create one for the GoCD server to apply automatic updates (set the same Vault password):
+
+```bash
+ansible-vault create /opt/ansible/vault_gocd
+```
+
+```bash
+ansible_sudo_pass: {gocd user password}
+```
+
+Finally, we need to create a text file that will allow Ansible to programmatically open the Vault (ignored by Git)
+
+```bash
+vi /opt/ansible/.vaultpasswordfile
+```
+
+```bash
+mysupersecurepassword
+```
 
 #### Edit the Ansible configuration file
 
 Now, your need to open the `ansible.cfg` file to let Ansible knwo that we use a different location for our playbook, roles, etc.
 
-``` bash
+```bash
 [sudo] vi /etc/ansible/ansible.cfg
 ```
 
@@ -72,23 +95,23 @@ Now, your need to open the `ansible.cfg` file to let Ansible knwo that we use a 
 
 Change the roles path to `/opt/ansible/roles`:
 
-``` bash
+```bash
 roles_path    = /opt/ansible/roles
 ```
 
 ##### Vault password file
 
-Uncomment `vault_password_file` and add the `/opt/ansible/vaultpasswdfile.yml` path.
+Uncomment `vault_password_file` and add the `/opt/ansible/.vaultpasswordfile` path.
 
-``` bash
-vault_password_file = /opt/ansible/vaultpasswdfile.yml
+```bash
+vault_password_file = /opt/ansible/.vaultpasswordfile
 ```
 
 ##### Hosts in GIT (optional)
 
 If you want to keep the management of your hosts under a GIT repository, I will suggest that you fork this repository and change this line under your `/etc/ansible/ansible.cfg` file:
 
-``` bash
+```bash
 inventory      = /opt/ansible/hosts
 ```
 
@@ -98,13 +121,13 @@ inventory      = /opt/ansible/hosts
 
 To test if everything is ok, you can `ping` your hosts.
 
-``` bash
+```bash
 ansible all -m ping
 ```
 
 Output:
 
-``` bash
+```bash
 gocd | SUCCESS => {
     "changed": false,
     "ping": "pong"
@@ -125,19 +148,19 @@ agent03 | SUCCESS => {
 
 #### Install the Ansible Playbook Roles
 
-``` bash
+```bash
 cd /opt/ansible
 ```
 
 ##### Homebrew playbook
 
-``` bash
+```bash
 ansible-galaxy install geerlingguy.homebrew
 ```
 
 ##### Java 8 playbook (Oracle)
 
-``` bash
+```bash
 ansible-galaxy install srsp.oracle-java
 ```
 
@@ -149,7 +172,7 @@ ansible-galaxy install srsp.oracle-java
 
 You need to run this command in a terminal on each of your Go.CD agents:
 
-``` bash
+```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
@@ -159,19 +182,19 @@ You need to run this command in a terminal on each of your Go.CD agents:
 
 #### Homebrew
 
-``` bash
+```bash
 ansible-playbook /opt/ansible/playbooks/homebrewUpdate.yml
 ```
 
 #### Java JDK
 
-``` bash
+```bash
 ansible-playbook /opt/ansible/playbooks/javaUpdate.yml
 ```
 
 #### Android SDK
 
-``` bash
+```bash
 ansible-playbook /opt/ansible/playbooks/androidSdkPkgUpdate.yml
 ```
 
@@ -181,15 +204,15 @@ Ideally, you Ansible playbooks need to be run automatically and nothing is simpl
 
 Update the `crontab.txt` file to fill your own time preferences and run this command:
 
-``` bash
+```bash
 crontab /opt/ansible/crontab.txt
 ```
 
 Content of the `crontab.txt`:
 
-``` bash
+```bash
 # Ansible - Update Homebrew packages in all Go.CD agents every day at 1:00 am
-0 0 1 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/homebrewUpdate.log ; ansible-playbook /opt/ansible/playbooks/homebrewUpdate.yml >> /opt/ansible/logs/homebrewUpdate.log
+0 0 1 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/homebrew.log ; ansible-playbook /opt/ansible/playbooks/homebrew.yml >> /opt/ansible/logs/homebrew.log
 
 # Ansible - Update Java JDK packages in all Go.CD agents every Monday at 2:00 am
 0 0 2 * MON echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/javaUpdate.log ; ansible-playbook /opt/ansible/playbooks/javaUpdate.yml >> /opt/ansible/logs/javaUpdate.log
@@ -199,5 +222,6 @@ Content of the `crontab.txt`:
 ```
 
 ## TODO
+
 * Create a playbook role to install Go.CD agent software
 * Add the Xcode playbook role to install/update Xcode on the Go.CD agents
