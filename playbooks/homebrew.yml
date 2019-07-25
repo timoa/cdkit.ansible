@@ -2,7 +2,7 @@
 - hosts: agents
 
   vars_files:
-    - /opt/ansible/vault_agents
+    - /opt/ansible/vault
 
   vars:
     homebrew_installed_packages:
