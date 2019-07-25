@@ -3,6 +3,7 @@
 
   vars_files:
     - /opt/ansible/vault_agents
+    - /opt/ansible/vars/lang.yml
 
   vars:
     homebrew_installed_packages:
@@ -18,27 +19,28 @@
       - fail2ban
 
     homebrew_cask_apps:
-      - java8
+      - java
       - fastlane
       - android-sdk
       - intel-power-gadget
       - virtualbox
+      - go-agent
 
   tasks:
-    - name: Set the LC_ALL to en_GB.UTF-8
+    - name: Set the LC_ALL to {{ lang }}.UTF-8
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
-        line: "export LC_ALL=en_GB.UTF-8"
+        line: "export LC_ALL={{ lang }}.UTF-8"
     
-    - name: Set the LANG to en_GB.UTF-8
+    - name: Set the LANG to {{ lang }}.UTF-8
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
-        line: "export LANG=en_GB.UTF-8"
+        line: "export LANG={{ lang }}.UTF-8"
 
     - name: Add the Java home path to the $JAVA_HOME
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
-        line: "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
+        line: "export JAVA_HOME=$(/usr/libexec/java_home)"
     
     - name: Add $JAVA_HOME, Ruby, Fastlane to the $PATH
       lineinfile:
