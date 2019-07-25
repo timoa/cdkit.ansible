@@ -1,0 +1,49 @@
+---
+- hosts: agents
+
+  vars_files:
+    - /opt/ansible/vault_agents
+
+  vars:
+    homebrew_installed_packages:
+      - ssh-copy-id
+      - maven
+      - carthage
+      - sonar-scanner
+      - imagemagick
+      - node_exporter
+      - mas
+      - smartmontools
+      - ruby
+      - fail2ban
+
+    homebrew_cask_apps:
+      - java8
+      - fastlane
+      - android-sdk
+      - intel-power-gadget
+      - virtualbox
+
+  tasks:
+    - name: Set the LC_ALL to en_GB.UTF-8
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.profile"
+        line: "export LC_ALL=en_GB.UTF-8"
+    
+    - name: Set the LANG to en_GB.UTF-8
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.profile"
+        line: "export LANG=en_GB.UTF-8"
+
+    - name: Add the Java home path to the $JAVA_HOME
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.profile"
+        line: "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
+    
+    - name: Add $JAVA_HOME, Ruby, Fastlane to the $PATH
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.profile"
+        line: "export PATH=$JAVA_HOME/bin:/usr/local/opt/ruby/bin:{{ ansible_env.HOME }}/.fastlane/bin:$PATH"
+
+  roles:
+    - geerlingguy.homebrew
