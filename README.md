@@ -38,7 +38,7 @@ After you installed Ansible, you need to checkout this repository to the folder 
 
 ``` bash
 [sudo] mkdir /opt/ansible
-git clone git@github.com:timoa/cdkit.ansible.git
+git clone git@github.com:timoa/cdkit.ansible.git /opt/ansible
 ```
 
 #### Configure your hosts
