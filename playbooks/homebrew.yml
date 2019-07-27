@@ -24,7 +24,6 @@
       - android-sdk
       - intel-power-gadget
       - virtualbox
-      - go-agent
 
   tasks:
     - name: Set the LC_ALL to {{ lang }}.UTF-8
