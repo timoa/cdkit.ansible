@@ -61,6 +61,9 @@ ansible-vault create /opt/ansible/vault_agents
 
 ```bash
 ansible_become_pass: {agents user password}
+appc_username: {Appcelerator/Axway username}
+appc_password: {Appcelerator/Axway password}
+appc_org: {Appcelerator/Axway organisation ID}
 ```
 
 You can also create one for the GoCD server to apply automatic updates (set the same Vault password):
@@ -70,7 +73,7 @@ ansible-vault create /opt/ansible/vault_gocd
 ```
 
 ```bash
-ansible_become_pass: {gocd user password}
+ansible_become_pass: {gocd server user password}
 ```
 
 Finally, we need to create a text file that will allow Ansible to programmatically open the Vault (ignored by Git)
@@ -115,7 +118,7 @@ If you want to keep the management of your hosts under a GIT repository, I will 
 inventory      = /opt/ansible/hosts
 ```
 
-> If you don't fork this GIT repository and make any changes on the `hosts` file, these changes will be replace by a new version next time you update the project with the `git pull` command in the `/opt/ansible` folder!
+> If you don't fork this GIT repository and make any changes on the `hosts` file, these changes will be replace by a newer version the next time you update the project with the `git pull` command in the `/opt/ansible` folder!
 
 #### Test the connectivity to your hosts
 

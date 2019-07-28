@@ -1,0 +1,23 @@
+---
+
+
+# This playbook is to install android SDK updates in all the GO agents
+- hosts: agents
+  gather_facts: no
+
+  # Since we logout/login for each agent, we need to do it in serial
+  # to avoid a logout during installation of one of the agent.
+  serial: 1
+
+  vars_files:
+    - /opt/ansible/vault_agents
+
+  tasks:
+  - name: logout appc in all agents
+    shell: appc logout
+  
+  - name: login appc in all agents
+    shell: appc login --username {{ appc_username }} --password {{ appc_password }} --org-id {{ appc_org }}
+   
+  - name: updating Titanium SDK in all GO agents
+    shell: echo "y" | appc ti sdk install latest
