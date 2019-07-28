@@ -1,9 +1,0 @@
----
-
-- hosts: agents
-
-  roles:
-    - srsp.oracle-java
-
-  vars:
-    java_version: 8

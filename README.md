@@ -60,7 +60,7 @@ ansible-vault create /opt/ansible/vault_agents
 ```
 
 ```bash
-ansible_sudo_pass: {agents user password}
+ansible_become_pass: {agents user password}
 ```
 
 You can also create one for the GoCD server to apply automatic updates (set the same Vault password):
@@ -70,7 +70,7 @@ ansible-vault create /opt/ansible/vault_gocd
 ```
 
 ```bash
-ansible_sudo_pass: {gocd user password}
+ansible_become_pass: {gocd user password}
 ```
 
 Finally, we need to create a text file that will allow Ansible to programmatically open the Vault (ignored by Git)
@@ -183,19 +183,21 @@ You need to run this command in a terminal on each of your Go.CD agents:
 #### Homebrew
 
 ```bash
-ansible-playbook /opt/ansible/playbooks/homebrewUpdate.yml
-```
-
-#### Java JDK
-
-```bash
-ansible-playbook /opt/ansible/playbooks/javaUpdate.yml
+ansible-playbook /opt/ansible/playbooks/homebrew.yml
 ```
 
 #### Android SDK
 
+##### Android SDK with API from 21 to 28
+
 ```bash
-ansible-playbook /opt/ansible/playbooks/androidSdkPkgUpdate.yml
+ansible-playbook /opt/ansible/playbooks/android/sdkInstall.yml
+```
+
+##### Android SDK emulators (optional)
+
+```bash
+ansible-playbook /opt/ansible/playbooks/android/emulatorsInstall.yml
 ```
 
 #### Automate the run with CRON
@@ -214,11 +216,8 @@ Content of the `crontab.txt`:
 # Ansible - Update Homebrew packages in all Go.CD agents every day at 1:00 am
 0 0 1 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/homebrew.log ; ansible-playbook /opt/ansible/playbooks/homebrew.yml >> /opt/ansible/logs/homebrew.log
 
-# Ansible - Update Java JDK packages in all Go.CD agents every Monday at 2:00 am
-0 0 2 * MON echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/javaUpdate.log ; ansible-playbook /opt/ansible/playbooks/javaUpdate.yml >> /opt/ansible/logs/javaUpdate.log
-
-# Ansible - Update Android SDK packages in all Go.CD agents every day at 3:00 am
-0 0 3 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/androidSdkPkgUpdate.log ; ansible-playbook /opt/ansible/playbooks/androidSdkPkgUpdate.yml >> /opt/ansible/logs/androidSdkPkgUpdate.log
+# Ansible - Update Android SDK packages in all Go.CD agents every day at 2:00 am
+0 0 2 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/androidSdkPkgUpdate.log ; ansible-playbook /opt/ansible/playbooks/android/sdkUpdate.yml >> /opt/ansible/logs/androidSdkUpdate.log
 ```
 
 ## TODO
