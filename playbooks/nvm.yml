@@ -1,0 +1,8 @@
+- hosts: agents
+
+  vars_files:
+    - /opt/ansible/vault_agents
+  
+  roles:
+  - role: stephdewit.nvm
+    nvm_node_version: {{ appc_cli_node }}

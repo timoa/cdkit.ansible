@@ -1,0 +1,6 @@
+---
+# Versions config file
+xcode: 10.3.0
+xcode_major: 10
+android_build_tools: 28.0.3
+appc_cli_node: 8
