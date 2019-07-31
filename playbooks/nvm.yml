@@ -6,4 +6,4 @@
   
   roles:
   - role: stephdewit.nvm
-    nvm_node_version: {{ appc_cli_node }}
+    nvm_node_version: "{{ appc_cli_node }}"
