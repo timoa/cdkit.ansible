@@ -3,13 +3,14 @@
   vars_files:
     - /opt/ansible/vault_agents
     - /opt/ansible/vars/versions.yml
-  
-- name: Install nvm
-  shell: >
-    curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | sh
-    creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
 
-- name: Install node {{ appc_cli_node }} and set version
-  shell: >
-    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install {{ appc_cli_node }} && nvm alias default {{ appc_cli_node }}"
-    creates=/home/{{ ansible_user_id }}/.nvm/alias
+  tasks:
+  - name: Install nvm
+    shell: >
+      curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | sh
+      creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
+
+  - name: Install node {{ appc_cli_node }} and set version
+    shell: >
+      /bin/bash -c "source ~/.nvm/nvm.sh && nvm install {{ appc_cli_node }} && nvm alias default {{ appc_cli_node }}"
+      creates=/home/{{ ansible_user_id }}/.nvm/alias
