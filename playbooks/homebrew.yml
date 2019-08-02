@@ -45,7 +45,7 @@
     - name: Add $JAVA_HOME, Ruby, Fastlane to the $PATH
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
-        line: "export PATH=$JAVA_HOME/bin:/usr/local/opt/ruby/bin:{{ ansible_env.HOME }}/.fastlane/bin:$PATH"
+        line: "export PATH=$JAVA_HOME/bin:/usr/local/opt/ruby/bin:$HOME/.fastlane/bin:$PATH"
 
   roles:
     - geerlingguy.homebrew
