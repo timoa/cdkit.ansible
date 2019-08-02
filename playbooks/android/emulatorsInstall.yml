@@ -1,7 +1,6 @@
 --- 
 # This playbook is to install android SDK updates in all the agents
 - hosts: agents
-  gather_facts: no
 
   vars_files:
     - /opt/ansible/vars/versions.yml
