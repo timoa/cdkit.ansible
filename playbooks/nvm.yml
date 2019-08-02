@@ -6,11 +6,27 @@
 
   tasks:
   - name: Install nvm
-    shell: >
-      curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | sh
-      creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
+    git:
+      repo: https://github.com/creationix/nvm.git
+      dest: "{{ ansible_env.HOME }}/.nvm"
+      version: "{% if nvm!='HEAD' %}v{% endif %}{{ nvm }}"
 
-  - name: Install node {{ appc_cli_node }} and set version
-    shell: >
-      /bin/bash -c "source ~/.nvm/nvm.sh && nvm install {{ appc_cli_node }} && nvm alias default {{ appc_cli_node }}"
-      creates=/home/{{ ansible_user_id }}/.nvm/alias
+  - name: Source nvm in ~/.profile
+    lineinfile:
+      dest: ~/.profile
+      line: . {{ ansible_env.HOME }}/.nvm/nvm.sh
+      create: yes
+
+  - name: Install Node.js {{ appc_cli_node }}
+    shell: . ~/.profile && nvm install {{ appc_cli_node }}
+    register: nvm_install_result
+    changed_when: "'is already installed.' not in nvm_install_result.stderr"
+
+  - name: Check if {{ appc_cli_node }} is the default Node.js version
+    shell: . ~/.profile && nvm ls --no-colors | grep -e 'default -> {{ appc_cli_node }}'
+    register: nvm_check_default
+    changed_when: False
+    failed_when: False
+
+  - name: Set default Node.js version to {{ appc_cli_node }}
+    shell: . ~/.profile && nvm alias default {{ appc_cli_node }}
