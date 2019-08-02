@@ -7,23 +7,24 @@
 
   vars:
     homebrew_installed_packages:
-      - ssh-copy-id
-      - maven
-      - carthage
-      - sonar-scanner
-      - imagemagick
-      - node_exporter
-      - mas
-      - smartmontools
-      - ruby
-      - fail2ban
+      - ssh-copy-id # Easy install of the agents SSH to the server
+      - maven 
+      - carthage # Needed for iOS dev
+      - sonar-scanner # Code analysis with SonarQube
+      - imagemagick # Used for app stores design automation
+      - node_exporter # Monitoring of the agents
+      - mas # Install Mac App Store apps from the CLI
+      - smartmontools # Sensors monitoring (CPU temp, fan speed, etc.)
+      - ruby # Updated version of Ruby for Fastlane
+      - python3 # Updated version of Python for Ansible
+      - fail2ban # Protect the agents from SSH attacks
 
     homebrew_cask_apps:
-      - java
-      - fastlane
-      - android-sdk
-      - intel-power-gadget
-      - virtualbox
+      - java # Java for Go.CD agents
+      - fastlane # iOS and Android automation
+      - android-sdk # Android SDK (CLI)
+      - intel-power-gadget # Additionnal sensors for the monitoring
+      - virtualbox # VM orchestrator used by Genymotion
 
   tasks:
     - name: Set the LC_ALL to {{ lang }}.UTF-8
