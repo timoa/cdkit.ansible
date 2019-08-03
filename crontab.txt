@@ -1,8 +1,8 @@
-# Ansible - Update Homebrew packages in all GO.CD agents every day at 1:00 am
+# Ansible - Update Homebrew packages in all agents every day at 1:00 am
 0 0 1 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/homebrew.log ; ansible-playbook /opt/ansible/playbooks/homebrew.yml >> /opt/ansible/logs/homebrew.log
 
-# Ansible - Update Java JDK packages in all GO.CD agents every Monday at 2:00 am
-0 0 2 * MON echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/javaUpdate.log ; ansible-playbook /opt/ansible/playbooks/javaUpdate.yml >> /opt/ansible/logs/javaUpdate.log
+# Ansible - Update Android SDK packages in all agents every day at 2:00 am
+0 0 2 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/androidSdkUpdate.log ; ansible-playbook /opt/ansible/playbooks/android/sdkUpdate.yml >> /opt/ansible/logs/androidSdkUpdate.log
 
-# Ansible - Update Android SDK packages in all GO.CD agents every day at 3:00 am
-0 0 3 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/androidSdkPkgUpdate.log ; ansible-playbook /opt/ansible/playbooks/androidSdkPkgUpdate.yml >> /opt/ansible/logs/androidSdkPkgUpdate.log
+# Ansible - Update Titanium SDK packages in all agents every day at 3:00 am
+0 0 2 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/titaniumSdkUpdate.log ; ansible-playbook /opt/ansible/playbooks/titanium/sdkUpdate.yml >> /opt/ansible/logs/titaniumSdkUpdate.log

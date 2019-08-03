@@ -4,19 +4,15 @@
 # This playbook is to install the Appcelerator CLI & Titanium SDK in all the agents
 - hosts: agents
 
-  # Since we logout/login for each agent, we need to do it in serial
-  # to avoid a logout during installation of one of the agent.
-  serial: 1
-
   vars_files:
     - /opt/ansible/vault_agents
 
   tasks:
   - name: Install the Appcelerator CLI
-    shell: ~/.profile && npm install -g appcelerator
+    shell: . ~/.profile && npm install -g appcelerator
   
-  - name: login appc in all agents
-    shell: appc login --username {{ appc_username }} --password {{ appc_password }} --org-id {{ appc_org }}
+  - name: Login to Appcelerator/Axway platform
+    shell: . ~/.profile && appc login --username "{{ appc_username }}" --password "{{ appc_password }}" --org-id "{{ appc_org }}"
    
-  - name: updating Titanium SDK in all the agents
-    shell: echo "y" | appc ti sdk install latest
+  - name: Download the latest Titanium SDK
+    shell: . ~/.profile && echo "y" | appc ti sdk install latest

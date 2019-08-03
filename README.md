@@ -61,7 +61,7 @@ ansible-vault create /opt/ansible/vault_agents
 
 ```bash
 ansible_become_pass: {agents user password}
-appc_username: {Appcelerator/Axway username}
+appc_username: {Appcelerator/Axway username (email address)}
 appc_password: {Appcelerator/Axway password}
 appc_org: {Appcelerator/Axway organisation ID}
 ```
@@ -155,16 +155,21 @@ agent03 | SUCCESS => {
 cd /opt/ansible
 ```
 
-##### Homebrew playbook
+##### Homebrew Ansible Role
 
 ```bash
 ansible-galaxy install geerlingguy.homebrew
 ```
 
-##### Java 8 playbook (Oracle)
+##### Xcode Ansible Role
+
+This role install/update Xcode BUT it doesn't download it.
+
+You need to store the XPI file on a network drive (NFS, SMB, etc.)
+or temporary folder before running it.
 
 ```bash
-ansible-galaxy install srsp.oracle-java
+ansible-galaxy install macstadium.xcode
 ```
 
 ## Go.CD Agent(s)
@@ -203,6 +208,18 @@ ansible-playbook /opt/ansible/playbooks/android/sdkInstall.yml
 ansible-playbook /opt/ansible/playbooks/android/emulatorsInstall.yml
 ```
 
+#### Node.js (via nvm)
+
+```bash
+ansible-playbook /opt/ansible/playbooks/nvm.yml
+```
+
+#### Titanium SDK
+
+```bash
+ansible-playbook /opt/ansible/playbooks/titanium/sdkInstall.yml
+```
+
 #### Automate the run with CRON
 
 Ideally, you Ansible playbooks need to be run automatically and nothing is simplier than a CRON job for that!
@@ -216,14 +233,18 @@ crontab /opt/ansible/crontab.txt
 Content of the `crontab.txt`:
 
 ```bash
-# Ansible - Update Homebrew packages in all Go.CD agents every day at 1:00 am
+# Ansible - Update Homebrew packages in all agents every day at 1:00 am
 0 0 1 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/homebrew.log ; ansible-playbook /opt/ansible/playbooks/homebrew.yml >> /opt/ansible/logs/homebrew.log
 
-# Ansible - Update Android SDK packages in all Go.CD agents every day at 2:00 am
-0 0 2 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/androidSdkPkgUpdate.log ; ansible-playbook /opt/ansible/playbooks/android/sdkUpdate.yml >> /opt/ansible/logs/androidSdkUpdate.log
+# Ansible - Update Android SDK packages in all agents every day at 2:00 am
+0 0 2 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/androidSdkUpdate.log ; ansible-playbook /opt/ansible/playbooks/android/sdkUpdate.yml >> /opt/ansible/logs/androidSdkUpdate.log
+
+# Ansible - Update Titanium SDK packages in all agents every day at 3:00 am
+0 0 2 * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/titaniumSdkUpdate.log ; ansible-playbook /opt/ansible/playbooks/titanium/sdkUpdate.yml >> /opt/ansible/logs/titaniumSdkUpdate.log
 ```
 
 ## TODO
 
-* Create a playbook role to install Go.CD agent software
-* Add the Xcode playbook role to install/update Xcode on the Go.CD agents
+* Create an Ansible playbook to install/update the Go.CD agent software
+* Create an Ansible playbook to install/update the Go.CD server software
+* Create an Ansible playbook to install/update a workstation/notebook like the agents
