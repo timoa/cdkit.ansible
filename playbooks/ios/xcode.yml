@@ -1,0 +1,15 @@
+--- 
+# This playbook is to install Xcode updates in all the agents
+- hosts: agents
+     
+  vars_files:
+    - /opt/ansible/vault_agents
+    - /opt/ansible/vars/versions.yml
+  
+  vars:
+    xcode_xip_location: "/tmp/Xcode_{{ xcode }}.xip"
+    xcode_major_version: "{{ xcode_major }}"
+
+  roles:
+    - macstadium.xcode
+    
