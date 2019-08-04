@@ -9,8 +9,11 @@
     - name: Updating packages in all agents 
       shell: echo "y" | /usr/local/bin/sdkmanager --update --channel=1
 
-    - name: Install the latest build-tools & platform-tools
-      shell: echo "y" | /usr/local/bin/sdkmanager  "build-tools;{{ android_build_tools }}" "platform-tools"
+    - name: Install the latest platform-tools
+      shell: echo "y" | /usr/local/bin/sdkmanager "platform-tools"
+
+    - name: Install the build-tools {{ android_build_tools }}
+      shell: echo "y" | /usr/local/bin/sdkmanager "build-tools;{{ android_build_tools }}"
 
     - name: Install Google Play services
       shell: echo "y" | /usr/local/bin/sdkmanager "extras;google;google_play_services"
