@@ -10,6 +10,7 @@
 
   vars_files:
     - /opt/ansible/vault_agents
+    - /opt/ansible/vars/paths.yml
 
   tasks:
   - name: Install the Appcelerator CLI
@@ -20,6 +21,9 @@
    
   - name: Download the latest Titanium SDK
     shell: . ~/.profile && echo "y" | appc ti sdk install latest
-    
+
+  - name: Set the Android SDK path for Appc
+    shell: . ~/.profile && appc titanium config android.sdkPath {{ android_sdk_path }}
+
   - name: Logout from the Appcelerator/Axway platform
     shell: . ~/.profile && appc logout
