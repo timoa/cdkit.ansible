@@ -4,6 +4,7 @@
   vars_files:
     - /opt/ansible/vault_agents
     - /opt/ansible/vars/lang.yml
+    - /opt/ansible/vars/paths.yml
 
   vars:
     homebrew_installed_packages:
@@ -45,7 +46,7 @@
     - name: Add the Android home path to the $ANDROID_HOME
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
-        line: "export ANDROID_HOME=\"/usr/local/share/android-sdk\""
+        line: "export ANDROID_HOME=\"{{ android_sdk_path }}\""
     
     - name: Add the Android home path to the $ANDROID_SDK
       lineinfile:
