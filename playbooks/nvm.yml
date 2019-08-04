@@ -11,10 +11,16 @@
       dest: "{{ ansible_env.HOME }}/.nvm"
       version: "{% if nvm!='HEAD' %}v{% endif %}{{ nvm }}"
 
+  - name: Export $NVM_DIR in ~/.profile
+    lineinfile:
+      dest: "{{ ansible_env.HOME }}/.profile"
+      line: "export NVM_DIR=\"$HOME/.nvm\""
+      create: yes
+
   - name: Source nvm in ~/.profile
     lineinfile:
       dest: ~/.profile
-      line: . {{ ansible_env.HOME }}/.nvm/nvm.sh
+      line: "[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"  # This loads nvm"
       create: yes
 
   - name: Install Node.js {{ appc_cli_node }}
