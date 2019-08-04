@@ -41,11 +41,21 @@
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export JAVA_HOME=$(/usr/libexec/java_home)"
-    
-    - name: Add $JAVA_HOME, Ruby, Fastlane to the $PATH
+
+    - name: Add the Android home path to the $ANDROID_HOME
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
-        line: "export PATH=$JAVA_HOME/bin:/usr/local/opt/ruby/bin:$HOME/.fastlane/bin:$PATH"
+        line: "export ANDROID_HOME=\"/usr/local/share/android-sdk\""
+    
+    - name: Add the Android home path to the $ANDROID_SDK
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.profile"
+        line: "export ANDROID_SDK=$ANDROID_HOME"
+
+    - name: Add $JAVA_HOME, $ANDROID_HOME, Python, Ruby, Fastlane to the $PATH
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.profile"
+        line: "export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/:/usr/local/opt/python/libexec/bin:/usr/local/opt/ruby/bin:$HOME/.fastlane/bin:$PATH"
 
   roles:
     - geerlingguy.homebrew
