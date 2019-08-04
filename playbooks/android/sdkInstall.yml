@@ -6,7 +6,7 @@
     - /opt/ansible/vars/versions.yml
      
   tasks:
-    - name: Updating packages in all agents 
+    - name: Updating Android packages list
       shell: echo "y" | /usr/local/bin/sdkmanager --update --channel=1
 
     - name: Install the latest platform-tools

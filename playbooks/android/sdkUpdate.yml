@@ -3,5 +3,5 @@
 - hosts: agents
      
   tasks:  
-   - name: Updating packages in all agents 
+   - name: Updating all the Android packages
      shell: yes | /usr/local/bin/sdkmanager --update --channel=1
