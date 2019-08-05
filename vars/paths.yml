@@ -1,3 +1,4 @@
 ---
 # Paths config file
 android_sdk_path: /usr/local/share/android-sdk
+android_ndk_path: /usr/local/share/android-ndk

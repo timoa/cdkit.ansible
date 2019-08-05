@@ -23,9 +23,10 @@
     homebrew_cask_apps:
       - java # Java for Go.CD agents
       - fastlane # iOS and Android automation
-      - android-sdk # Android SDK (CLI)
+      - android-sdk # Android SDK (CLI only)
+      - android-ndk # Android NDK (Optional)
       - intel-power-gadget # Additionnal sensors for the monitoring
-      - virtualbox # VM orchestrator used by Genymotion
+      - virtualbox # VM used by Genymotion
 
   tasks:
     - name: Set the LC_ALL to {{ lang }}.UTF-8
@@ -52,6 +53,11 @@
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export ANDROID_SDK=$ANDROID_HOME"
+
+    - name: Add the Android NDK path to the $ANDROID_NDK
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.profile"
+        line: "export ANDROID_NDK=\"{{ android_sdk_path }}\""
 
     - name: Add $JAVA_HOME, $ANDROID_HOME, Python, Ruby, Fastlane to the $PATH
       lineinfile:

@@ -25,5 +25,8 @@
   - name: Set the Android SDK path for Appc
     shell: . ~/.profile && appc titanium config android.sdkPath {{ android_sdk_path }}
 
+  - name: Set the Android NDK path for Appc
+    shell: . ~/.profile && appc titanium config android.ndkPath {{ android_ndk_path }}
+
   - name: Logout from the Appcelerator/Axway platform
     shell: . ~/.profile && appc logout
