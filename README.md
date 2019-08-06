@@ -248,17 +248,20 @@ crontab /opt/ansible/crontab.txt
 Content of the `crontab.txt`:
 
 ```bash
-# Ansible - Update Homebrew packages in all agents every day at 1:00 am
+# Ansible - Update Homebrew packages on all agents every day at 1:00 am
 0 1 * * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/homebrew.log ; ansible-playbook /opt/ansible/playbooks/homebrew.yml >> /opt/ansible/logs/homebrew.log
 
-# Ansible - Update Android SDK packages in all agents every day at 2:00 am
+# Ansible - Update Android SDK packages on all agents every day at 2:00 am
 0 2 * * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/androidSdkUpdate.log ; ansible-playbook /opt/ansible/playbooks/android/sdkUpdate.yml >> /opt/ansible/logs/androidSdkUpdate.log
 
-# Ansible - Update Titanium SDK packages in all agents every day at 3:00 am
+# Ansible - Update Titanium SDK packages on all agents every day at 3:00 am
 0 3 * * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/titaniumSdkUpdate.log ; ansible-playbook /opt/ansible/playbooks/titanium/sdkUpdate.yml >> /opt/ansible/logs/titaniumSdkUpdate.log
 
-# Ansible - Update Appium package in all agents every Monday at 3:15 am
-15 3 * * MON echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/appiumUpdate.log ; ansible-playbook /opt/ansible/playbooks/appium.yml >> /opt/ansible/logs/appium.log
+# Ansible - Update Appium package on all agents every Monday at 3:15 am
+15 3 * * MON echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/appium.log ; ansible-playbook /opt/ansible/playbooks/appium.yml >> /opt/ansible/logs/appium.log
+
+# Ansible - Apply macOS Software updates on all agents every day at 4:00 am
+0 4 * * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/macos.log ; ansible-playbook /opt/ansible/playbooks/macos.yml >> /opt/ansible/logs/macos.log
 ```
 
 ## TODO
