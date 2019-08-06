@@ -1,7 +1,10 @@
 --- 
 # This playbook is to install android SDK updates in all the agents
 - hosts: agents
-     
+
+  vars_files:
+    - /opt/ansible/group_vars/agents.yml
+
   tasks:
     - name: Updating Android packages list
       shell: echo "y" | /usr/local/bin/sdkmanager --update --channel=1

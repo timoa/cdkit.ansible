@@ -3,6 +3,7 @@
 
   vars_files:
     - /opt/ansible/vault_agents
+    - /opt/ansible/group_vars/agents.yml
 
   vars:
     homebrew_installed_packages:
