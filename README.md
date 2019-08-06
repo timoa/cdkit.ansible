@@ -161,6 +161,15 @@ cd /opt/ansible
 ansible-galaxy install geerlingguy.homebrew
 ```
 
+##### macOS Software Updates Role
+
+This role includes macOS security updates and also
+software updates of apps installed with the Mac App Store
+
+```bash
+ansible-galaxy install aadl.softwareupdate
+```
+
 ##### Xcode Ansible Role
 
 This role install/update Xcode BUT it doesn't download it.
