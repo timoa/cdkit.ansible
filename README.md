@@ -172,7 +172,7 @@ ansible-galaxy install aadl.softwareupdate
 
 ##### Xcode Ansible Role
 
-This role install/update Xcode BUT it doesn't download it.
+This role install Xcode BUT it doesn't download it or update it.
 
 You need to store the XPI file on a network drive (NFS, SMB, etc.)
 or temporary folder before running it.
