@@ -10,6 +10,7 @@
 
   vars_files:
     - /opt/ansible/vault_agents
+    - /opt/ansible/main.yml
     - /opt/ansible/vars/paths.yml
 
   tasks:
@@ -25,8 +26,9 @@
   - name: Set the Android SDK path for Appc
     shell: . ~/.profile && appc titanium config android.sdkPath {{ android_sdk_path }}
 
-  - name: Set the Android NDK path for Appc
+  - name: Set the Android NDK path for Appc (optional)
     shell: . ~/.profile && appc titanium config android.ndkPath {{ android_ndk_path }}
+    when: android_ndk
 
   - name: Logout from the Appcelerator/Axway platform
     shell: . ~/.profile && appc logout
