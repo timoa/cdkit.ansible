@@ -8,7 +8,7 @@
     - /opt/ansible/group_vars/agents.yml
 
   vars:
-    softwareupdate_recommended_only: {{ macos_update_recommended_only }}
+    softwareupdate_recommended_only: "{{ macos_update_recommended_only }}"
 
   roles:
     - aadl.softwareupdate
