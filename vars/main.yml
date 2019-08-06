@@ -1,5 +1,0 @@
----
-# Main config file
-android_ndk: False
-
-locale: en_GB

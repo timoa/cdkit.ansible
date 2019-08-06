@@ -4,7 +4,6 @@
      
   vars_files:
     - /opt/ansible/vault_agents
-    - /opt/ansible/vars/versions.yml
   
   vars:
     xcode_xip_location: "/tmp/Xcode_{{ xcode }}.xip"

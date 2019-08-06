@@ -1,0 +1,19 @@
+---
+# Agents variables
+
+# Config
+android_ndk: False
+
+# Versions
+xcode: 10.3.0
+xcode_major: 10
+android_build_tools: 28.0.3
+appc_cli_node: 8
+nvm: 0.34.0
+
+# Path
+android_sdk_path: /usr/local/share/android-sdk
+android_ndk_path: /usr/local/share/android-ndk
+
+# Other variables
+locale: en_GB

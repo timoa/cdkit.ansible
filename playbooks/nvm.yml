@@ -2,7 +2,6 @@
 
   vars_files:
     - /opt/ansible/vault_agents
-    - /opt/ansible/vars/versions.yml
 
   tasks:
   - name: Install nvm

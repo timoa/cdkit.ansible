@@ -10,8 +10,6 @@
 
   vars_files:
     - /opt/ansible/vault_agents
-    - /opt/ansible/main.yml
-    - /opt/ansible/vars/paths.yml
 
   tasks:
   - name: Install the Appcelerator CLI
