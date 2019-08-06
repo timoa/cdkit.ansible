@@ -9,7 +9,7 @@
     git:
       repo: https://github.com/creationix/nvm.git
       dest: "{{ ansible_env.HOME }}/.nvm"
-      version: "{% if nvm!='HEAD' %}v{% endif %}{{ nvm }}"
+      version: "{% if nvm_version!='HEAD' %}v{% endif %}{{ nvm_version }}"
 
   - name: Export $NVM_DIR in ~/.profile
     lineinfile:

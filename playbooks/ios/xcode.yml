@@ -7,8 +7,7 @@
     - /opt/ansible/group_vars/agents.yml
   
   vars:
-    xcode_xip_location: "/tmp/Xcode_{{ xcode }}.xip"
-    xcode_major_version: "{{ xcode_major }}"
+    xcode_xip_location: "/tmp/Xcode_{{ xcode_version }}.xip"
 
   roles:
     - macstadium.xcode

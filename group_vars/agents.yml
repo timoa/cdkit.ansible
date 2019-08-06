@@ -2,14 +2,16 @@
 # Agents variables
 
 # Config
+xcode: True
 android_ndk: False
+macos_update_recommended_only: True
 
 # Versions
-xcode: 10.3.0
-xcode_major: 10
+xcode_version: 10.3.0
+xcode_major_version: 10
 android_build_tools: 28.0.3
 appc_cli_node: 8
-nvm: 0.34.0
+nvm_version: 0.34.0
 
 # Path
 android_sdk_path: /usr/local/share/android-sdk
