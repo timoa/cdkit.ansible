@@ -7,7 +7,7 @@ android_ndk: False
 macos_update_recommended_only: True
 
 # Versions
-xcode_version: 10.3.0
+xcode_version: 10.3
 xcode_major_version: 10
 android_build_tools: 28.0.3
 appc_cli_node: 8
@@ -16,6 +16,7 @@ nvm_version: 0.34.0
 # Path
 android_sdk_path: /usr/local/share/android-sdk
 android_ndk_path: /usr/local/share/android-ndk
+xcode_xpi_path: "{{ ansible_env.HOME }}/Downloads/Xcode_{{ xcode_version }}.xip"
 
 # Other variables
 locale: en_GB
