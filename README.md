@@ -235,6 +235,12 @@ ansible-playbook /opt/ansible/playbooks/titanium/sdkInstall.yml
 ansible-playbook /opt/ansible/playbooks/appium.yml
 ```
 
+#### macOS Software Updates
+
+```bash
+ansible-playbook /opt/ansible/playbooks/macos.yml
+```
+
 #### Automate the run with CRON
 
 Ideally, you Ansible playbooks need to be run automatically and nothing is simplier than a CRON job for that!
@@ -260,8 +266,8 @@ Content of the `crontab.txt`:
 # Ansible - Update Appium package on all agents every Monday at 3:15 am
 15 3 * * MON echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/appium.log ; ansible-playbook /opt/ansible/playbooks/appium.yml >> /opt/ansible/logs/appium.log
 
-# Ansible - Apply macOS Software updates on all agents every day at 4:00 am
-0 4 * * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/macos.log ; ansible-playbook /opt/ansible/playbooks/macos.yml >> /opt/ansible/logs/macos.log
+# Ansible - Apply macOS Software updates on all agents every day at 3:30 am
+30 3 * * * echo -e " \n #################$(date)################# \n" >> /opt/ansible/logs/macos.log ; ansible-playbook /opt/ansible/playbooks/macos.yml >> /opt/ansible/logs/macos.log
 ```
 
 ## TODO
