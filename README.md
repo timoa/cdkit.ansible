@@ -272,7 +272,9 @@ Content of the `crontab.txt`:
 
 ## TODO
 
-* Add instructions for the XCode updates
+* Add instructions for the XCode install
+* Create a script for the XCode update that remove the current version
+* Create an Ansible playbook to install/update Genymotion + default VMs
 * Create an Ansible playbook to install/update the Go.CD agent software
 * Create an Ansible playbook to install/update the Go.CD server software
-* Create an Ansible playbook to install/update a workstation/notebook like the agents
+* Create an Ansible playbook to install/update a your Mac with the same settings as the agents
