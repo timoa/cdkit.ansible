@@ -273,6 +273,7 @@ Content of the `crontab.txt`:
 ## TODO
 
 * Add instructions for the XCode install
+* Add the Terminal app into the macOS Accessibility permission (to launch XCode Organiser)
 * Create a script for the XCode update that remove the current version
 * Create an Ansible playbook to install/update Genymotion + default VMs
 * Create an Ansible playbook to install/update the Go.CD agent software
