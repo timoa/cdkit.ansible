@@ -272,6 +272,7 @@ Content of the `crontab.txt`:
 
 ## TODO
 
+* Reboot the agents every night after all the Ansible crontab tasks
 * Add instructions for the XCode install
 * Add the Terminal app into the macOS Accessibility permission (to launch XCode Organiser)
 * Create a script for the XCode update that remove the current version
