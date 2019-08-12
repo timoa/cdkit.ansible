@@ -13,6 +13,9 @@
     - /opt/ansible/group_vars/agents.yml
 
   tasks:
+  - name: Update the Appcelerator CLI
+    shell: . ~/.profile && npm update -g appcelerator
+
   - name: Login to the Appcelerator/Axway platform
     shell: . ~/.profile && appc login --username "{{ appc_username }}" --password "{{ appc_password }}" --org-id "{{ appc_org }}"
    
