@@ -1,0 +1,12 @@
+- hosts: agents
+
+  # To avoid to make unvailable all the agents in the same time, we do it in serial.
+  serial: 1
+
+  vars_files:
+    - /opt/ansible/vault_agents
+
+  tasks:
+    - name: Reboot the agent, wait for it to go down, come back up, and respond to the command "whoami"
+      reboot:
+        reboot_timeout: 600 # You can adapt the timeout for a slow agent
