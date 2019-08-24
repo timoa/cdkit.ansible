@@ -10,7 +10,7 @@ macos_update_recommended_only: True
 android_build_tools: 28.0.3
 xcode_version: 10.3
 xcode_major_version: 10
-appc_cli_node: 8
+appc_cli_node: 10
 nvm_version: 0.34.0
 
 # Path
