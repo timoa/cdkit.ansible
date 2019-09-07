@@ -283,3 +283,4 @@ Content of the `crontab.txt`:
 * Create an Ansible playbook to install/update the Go.CD agent software
 * Create an Ansible playbook to install/update the Go.CD server software
 * Create an Ansible playbook to install/update a your Mac with the same settings as the agents
+* Create an Ansible role instead of multiple playbooks + a playbook that will configure what we want ot install/configure
