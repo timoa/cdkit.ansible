@@ -7,6 +7,7 @@
 
   vars:
     homebrew_installed_packages:
+      - services # Manage the background services on macOS
       - ssh-copy-id # Easy install of the agents SSH to the server
       - maven 
       - carthage # Needed for iOS dev
