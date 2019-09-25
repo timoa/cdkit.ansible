@@ -1,6 +1,6 @@
 # [CDKit](https://github.com/timoa/cdkit): Ansible
 
-*[CDKit](https://github.com/timoa/cdkit) is a framework that helps to deploy mobile apps (iOS and Android) to the app stores (iTunes and Google Play).*
+*[CDKit](https://github.com/timoa/cdkit) is a DevOps framework that helps to deploy mobile apps (iOS and Android) to the app stores (iTunes and Google Play).*
 
 ## Getting started
 
