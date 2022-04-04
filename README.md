@@ -99,7 +99,9 @@ Now, your need to open the `ansible.cfg` file to let Ansible knwo that we use a 
 Change the roles path to `/opt/ansible/roles`:
 
 ```bash
+[...]
 roles_path    = /opt/ansible/roles
+[...]
 ```
 
 ##### Vault password file
@@ -107,7 +109,9 @@ roles_path    = /opt/ansible/roles
 Uncomment `vault_password_file` and add the `/opt/ansible/.vaultpasswordfile` path.
 
 ```bash
+[...]
 vault_password_file = /opt/ansible/.vaultpasswordfile
+[...]
 ```
 
 ##### Hosts in GIT (optional)
@@ -115,7 +119,9 @@ vault_password_file = /opt/ansible/.vaultpasswordfile
 If you want to keep the management of your hosts under a GIT repository, I will suggest that you fork this repository and change this line under your `/etc/ansible/ansible.cfg` file:
 
 ```bash
+[...]
 inventory      = /opt/ansible/hosts
+[...]
 ```
 
 > If you don't fork this GIT repository and make any changes on the `hosts` file, these changes will be replace by a newer version the next time you update the project with the `git pull` command in the `/opt/ansible` folder!
@@ -151,34 +157,14 @@ agent03 | SUCCESS => {
 
 #### Install the Ansible Playbook Roles
 
-```bash
-cd /opt/ansible
-```
+> The Xcode role DOESN'T download or update Xcode.
+> You need to download and store the XPI file on a network drive (NFS, SMB, etc.)
+> or temporary folder before running the following command.
 
-##### Homebrew Ansible Role
-
-```bash
-ansible-galaxy install geerlingguy.homebrew
-```
-
-##### macOS Software Updates Role
-
-This role includes macOS security updates and also
-software updates of apps installed with the Mac App Store
+The following command install all the necessary Ansible Roles from Galaxy:
 
 ```bash
-ansible-galaxy install aadl.softwareupdate
-```
-
-##### Xcode Ansible Role
-
-This role install Xcode BUT it doesn't download it or update it.
-
-You need to store the XPI file on a network drive (NFS, SMB, etc.)
-or temporary folder before running it.
-
-```bash
-ansible-galaxy install macstadium.xcode
+ansible-galaxy install -r /opt/ansible/requirements.yml
 ```
 
 ## Go.CD Agent(s)
