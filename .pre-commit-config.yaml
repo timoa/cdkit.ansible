@@ -14,7 +14,7 @@ repos:
 
   # Ansible Lint
   - repo: https://github.com/ansible-community/ansible-lint
-    rev: v5.1.2
+    rev: v6.0.2
     hooks:
       - id: ansible-lint
 
