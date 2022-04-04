@@ -1,14 +1,13 @@
---- 
+---
 # This playbook is to install Xcode in all the agents
 - hosts: agents
-     
+
   vars_files:
     - /opt/ansible/vault_agents
     - /opt/ansible/group_vars/agents.yml
-  
+
   vars:
     xcode_xip_location: "{{ xcode_xpi_path }}"
 
   roles:
     - macstadium.xcode
-    

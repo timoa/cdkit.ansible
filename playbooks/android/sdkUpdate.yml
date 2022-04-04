@@ -1,7 +1,7 @@
---- 
+---
 # This playbook is to install android SDK updates in all the agents
 - hosts: agents
-     
-  tasks:  
+
+  tasks:
    - name: Updating all the Android packages
      shell: yes | /usr/local/bin/sdkmanager --update --channel=1

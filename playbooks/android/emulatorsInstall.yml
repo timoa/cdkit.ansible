@@ -1,7 +1,7 @@
---- 
+---
 # This playbook is to install android SDK updates in all the agents
 - hosts: agents
-     
+
   tasks:
     - name: Updating Android packages list
       shell: echo "y" | /usr/local/bin/sdkmanager --update --channel=1
@@ -11,13 +11,13 @@
 
     - name: Install Android API 21 Intel emulator
       shell: echo "y" | /usr/local/bin/sdkmanager "system-images;android-21;google_apis;x86_64"
-    
+
     - name: Install Android API 22 Intel emulator
       shell: echo "y" | /usr/local/bin/sdkmanager "system-images;android-22;google_apis;x86_64"
 
     - name: Install Android API 23 Intel emulator
       shell: echo "y" | /usr/local/bin/sdkmanager "system-images;android-23;google_apis;x86_64"
-    
+
     - name: Install Android API 24 Intel emulator
       shell: echo "y" | /usr/local/bin/sdkmanager "system-images;android-24;google_apis;x86_64"
 
@@ -29,6 +29,6 @@
 
     - name: Install Android API 27 Intel emulator
       shell: echo "y" | /usr/local/bin/sdkmanager "system-images;android-27;google_apis;x86"
-    
+
     - name: Install Android API 28 Intel emulator
       shell: echo "y" | /usr/local/bin/sdkmanager "system-images;android-28;google_apis;x86_64"

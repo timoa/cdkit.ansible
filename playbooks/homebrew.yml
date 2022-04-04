@@ -8,7 +8,7 @@
   vars:
     homebrew_installed_packages:
       - ssh-copy-id # Easy install of the agents SSH to the server
-      - maven 
+      - maven
       - carthage # Needed for iOS dev
       - sonar-scanner # Code analysis with SonarQube
       - imagemagick # Used for app stores design automation
@@ -32,7 +32,7 @@
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export LC_ALL={{ locale }}.UTF-8"
-    
+
     - name: Set the LANG to {{ locale }}.UTF-8
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
@@ -47,7 +47,7 @@
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export ANDROID_HOME=\"{{ android_sdk_path }}\""
-    
+
     - name: Add the Android home path to the $ANDROID_SDK
       lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"

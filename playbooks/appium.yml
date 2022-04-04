@@ -1,8 +1,8 @@
---- 
+---
 # This playbook is to install/update Appium in all the agents
 - hosts: agents
   gather_facts: no
-     
-  tasks:  
+
+  tasks:
     - name: Install or update Appium
       shell: . ~/.profile && npm install -g appium wd webpack

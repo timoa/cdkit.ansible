@@ -1,4 +1,4 @@
---- 
+---
 # This playbook is to install android SDK updates in all the agents
 - hosts: agents
 
@@ -17,7 +17,7 @@
 
     - name: Install Google Play services
       shell: echo "y" | /usr/local/bin/sdkmanager "extras;google;google_play_services"
-      
+
     - name: Install Android API 21
       shell: echo "y" | /usr/local/bin/sdkmanager "platforms;android-21"
 
@@ -26,18 +26,18 @@
 
     - name: Install Android API 23
       shell: echo "y" | /usr/local/bin/sdkmanager "platforms;android-23"
-      
+
     - name: Install Android API 24
       shell: echo "y" | /usr/local/bin/sdkmanager "platforms;android-24"
-      
+
     - name: Install Android API 25
       shell: echo "y" | /usr/local/bin/sdkmanager "platforms;android-25"
-      
+
     - name: Install Android API 26
       shell: echo "y" | /usr/local/bin/sdkmanager "platforms;android-26"
-      
+
     - name: Install Android API 27
       shell: echo "y" | /usr/local/bin/sdkmanager "platforms;android-27"
-      
+
     - name: Install Android API 28
       shell: echo "y" | /usr/local/bin/sdkmanager "platforms;android-28"

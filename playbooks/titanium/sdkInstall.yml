@@ -15,10 +15,10 @@
   tasks:
   - name: Install the Appcelerator CLI
     shell: . ~/.profile && npm install -g appcelerator
-  
+
   - name: Login to the Appcelerator/Axway platform
     shell: . ~/.profile && appc login --username "{{ appc_username }}" --password "{{ appc_password }}" --org-id "{{ appc_org }}"
-   
+
   - name: Download the latest Titanium SDK
     shell: . ~/.profile && echo "y" | appc ti sdk install latest
 
