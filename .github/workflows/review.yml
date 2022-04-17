@@ -1,0 +1,22 @@
+name: reviewdog
+
+on: [pull_request]
+
+jobs:
+  ansible-lint:
+    name: runner / ansible-lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Prepare Ansible Lint
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+
+      - name: Run Ansible Lint
+        uses: reviewdog/action-ansiblelint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
