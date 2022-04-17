@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
 
       - name: Prepare Ansible Lint
         uses: actions/setup-python@7f80679172b057fc5e90d70d197929d454754a5a # tag=v2.3.2
