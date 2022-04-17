@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Prepare Ansible Lint
-        uses: actions/setup-python@7a69c2bc7dc38832443a11bc7c2550ba96c6f45c # tag=v2.0.2
+        uses: actions/setup-python@7f80679172b057fc5e90d70d197929d454754a5a # tag=v2.3.2
         with:
           python-version: 3.6
 
