@@ -17,6 +17,6 @@ jobs:
           python-version: 3.6
 
       - name: Run Ansible Lint
-        uses: reviewdog/action-ansiblelint@v1
+        uses: reviewdog/action-ansiblelint@bf3f386afa2e3a944e96f1dce58a68b7b6af9d25 # tag=v1.0.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
