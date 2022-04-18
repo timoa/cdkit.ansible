@@ -7,7 +7,7 @@ jobs:
   # -- LINT -------------------------------------------------------------------
   ansible-lint:
     name: runner / ansible-lint
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
