@@ -1,0 +1,22 @@
+name: Code Review
+
+on: [pull_request]
+
+jobs:
+
+  # -- LINT -------------------------------------------------------------------
+  ansible-lint:
+    name: runner / ansible-lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
+
+      - name: Prepare Ansible Lint
+        uses: actions/setup-python@7f80679172b057fc5e90d70d197929d454754a5a # tag=v2.3.2
+        with:
+          python-version: 3.6
+
+      - name: Run Ansible Lint
+        uses: reviewdog/action-ansiblelint@73e90954a430e26a77575c44fd81d651b7d3de56 # tag=v1.5.0
