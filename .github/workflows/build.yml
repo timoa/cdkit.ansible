@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
+      - name: Checkout
+        uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
 
       - name: Run ansible-lint
         uses: ansible-community/ansible-lint-action@ba54de22a6edeea3aa385cd8c5f20ec1f960a30b # tag=v6.0.2
