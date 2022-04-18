@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
 
       - name: Prepare Ansible Lint
-        uses: actions/setup-python@7f80679172b057fc5e90d70d197929d454754a5a # tag=v2.3.2
+        uses: actions/setup-python@9c644ca2ab8e57ea0a487b5ec2f8290740378bfd # tag=v3.1.0
         with:
           python-version: 3.6
 
