@@ -19,4 +19,4 @@ jobs:
           python-version: 3.6
 
       - name: Run Ansible Lint
-        uses: reviewdog/action-ansiblelint@73e90954a430e26a77575c44fd81d651b7d3de56 # tag=v1.5.0
+        uses: reviewdog/action-ansiblelint@ecf76687849cdb732377c42726b37cef88ec9f81 # tag=v1.5.1
