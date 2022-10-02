@@ -85,4 +85,5 @@
         line: "export PATH=$HOME/.fastlane/bin:$PATH"
 
   roles:
-    - geerlingguy.homebrew
+    - geerlingguy.mac.homebrew
+    - geerlingguy.mac.mas

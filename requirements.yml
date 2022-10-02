@@ -1,11 +1,16 @@
 ---
 roles:
 
-  # Homebrew Install
-  - name: geerlingguy.mac.homebrew
+  # macOS Command Line Tools
+  - name: elliotweiser.osx-command-line-tools
 
   # macOS Software Update
   - name: aadl.softwareupdate
 
   # Xcode Install
   - name: macstadium.xcode
+
+collections:
+
+  # Homebrew Install
+  - name: geerlingguy.mac
