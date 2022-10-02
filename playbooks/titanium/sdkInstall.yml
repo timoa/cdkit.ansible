@@ -1,6 +1,4 @@
 ---
-
-
 # This playbook is to install the Appcelerator CLI & Titanium SDK in all the agents
 - hosts: agents
 
@@ -13,21 +11,21 @@
     - /opt/ansible/group_vars/agents.yml
 
   tasks:
-  - name: Install the Appcelerator CLI
-    shell: . ~/.profile && npm install -g appcelerator
+    - name: Install the Appcelerator CLI
+      ansible.builtin.shell: . ~/.profile && npm install -g appcelerator
 
-  - name: Login to the Appcelerator/Axway platform
-    shell: . ~/.profile && appc login --username "{{ appc_username }}" --password "{{ appc_password }}" --org-id "{{ appc_org }}"
+    - name: Login to the Appcelerator/Axway platform
+      ansible.builtin.shell: . ~/.profile && appc login --username "{{ appc_username }}" --password "{{ appc_password }}" --org-id "{{ appc_org }}"
 
-  - name: Download the latest Titanium SDK
-    shell: . ~/.profile && echo "y" | appc ti sdk install latest
+    - name: Download the latest Titanium SDK
+      ansible.builtin.shell: . ~/.profile && echo "y" | appc ti sdk install latest
 
-  - name: Set the Android SDK path for Appc
-    shell: . ~/.profile && appc titanium config android.sdkPath {{ android_sdk_path }}
+    - name: Set the Android SDK path for Appc
+      ansible.builtin.shell: . ~/.profile && appc titanium config android.sdkPath {{ android_sdk_path }}
 
-  - name: Set the Android NDK path for Appc (optional)
-    shell: . ~/.profile && appc titanium config android.ndkPath {{ android_ndk_path }}
-    when: android_ndk
+    - name: Set the Android NDK path for Appc (optional)
+      ansible.builtin.shell: . ~/.profile && appc titanium config android.ndkPath {{ android_ndk_path }}
+      when: android_ndk
 
-  - name: Logout from the Appcelerator/Axway platform
-    shell: . ~/.profile && appc logout
+    - name: Logout from the Appcelerator/Axway platform
+      ansible.builtin.shell: . ~/.profile && appc logout

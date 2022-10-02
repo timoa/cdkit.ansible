@@ -8,6 +8,6 @@
 
   tasks:
     - name: Reboot the agent, wait for it to go down, come back up, and respond to the command "whoami"
-      become: yes
-      reboot:
+      become: true
+      ansible.builtin.reboot:
         reboot_timeout: 600 # You can adapt the timeout for a slow agent

@@ -1,8 +1,9 @@
 ---
 # This playbook is to install/update Appium in all the agents
 - hosts: agents
-  gather_facts: no
+  gather_facts: false
 
   tasks:
     - name: Install or update Appium
-      shell: . ~/.profile && npm install -g appium wd webpack
+      ansible.builtin.shell: . ~/.profile && npm install -g appium wd webpack
+      changed_when: false

@@ -3,5 +3,5 @@
 - hosts: agents
 
   tasks:
-   - name: Updating all the Android packages
-     shell: yes | /usr/local/bin/sdkmanager --update --channel=1
+    - name: Updating all the Android packages
+      ansible.builtin.shell: yes | /usr/local/bin/sdkmanager --update --channel=1

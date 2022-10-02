@@ -5,34 +5,37 @@
     - /opt/ansible/group_vars/agents.yml
 
   tasks:
-  - name: Install nvm
-    git:
-      repo: https://github.com/creationix/nvm.git
-      dest: "{{ ansible_env.HOME }}/.nvm"
-      version: "{% if nvm_version!='HEAD' %}v{% endif %}{{ nvm_version }}"
+    - name: Install nvm
+      ansible.builtin.git:
+        repo: https://github.com/creationix/nvm.git
+        dest: "{{ ansible_env.HOME }}/.nvm"
+        version: "{% if nvm_version!='HEAD' %}v{% endif %}{{ nvm_version }}"
 
-  - name: Export $NVM_DIR in ~/.profile
-    lineinfile:
-      dest: "{{ ansible_env.HOME }}/.profile"
-      line: "export NVM_DIR=\"$HOME/.nvm\""
-      create: yes
+    - name: Export $NVM_DIR in ~/.profile
+      ansible.builtin.lineinfile:
+        dest: "{{ ansible_env.HOME }}/.profile"
+        line: 'export NVM_DIR="$HOME/.nvm"'
+        create: true
+        mode: '755'
 
-  - name: Source nvm in ~/.profile
-    lineinfile:
-      dest: ~/.profile
-      line: "[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"  # This loads nvm"
-      create: yes
+    - name: Source nvm in ~/.profile
+      ansible.builtin.lineinfile:
+        dest: ~/.profile
+        line: "[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"  # This loads nvm"
+        create: true
+        mode: '755'
 
-  - name: Install Node.js {{ appc_cli_node }}
-    shell: . ~/.profile && nvm install {{ appc_cli_node }}
-    register: nvm_install_result
-    changed_when: "'is already installed.' not in nvm_install_result.stderr"
+    - name: Install Node.js {{ appc_cli_node }}
+      ansible.builtin.shell: . ~/.profile && nvm install {{ appc_cli_node }}
+      register: nvm_install_result
+      changed_when: "'is already installed.' not in nvm_install_result.stderr"
 
-  - name: Check if {{ appc_cli_node }} is the default Node.js version
-    shell: . ~/.profile && nvm ls --no-colors | grep -e 'default -> {{ appc_cli_node }}'
-    register: nvm_check_default
-    changed_when: False
-    failed_when: False
+    - name: Check if {{ appc_cli_node }} is the default Node.js version
+      ansible.builtin.shell: set -o pipefail && . ~/.profile && nvm ls --no-colors | grep -e 'default -> {{ appc_cli_node }}'
+      register: nvm_check_default
+      changed_when: false
+      failed_when: false
 
-  - name: Set default Node.js version to {{ appc_cli_node }}
-    shell: . ~/.profile && nvm alias default {{ appc_cli_node }}
+    - name: Set default Node.js version to {{ appc_cli_node }}
+      ansible.builtin.shell: . ~/.profile && nvm alias default {{ appc_cli_node }}
+      changed_when: false
