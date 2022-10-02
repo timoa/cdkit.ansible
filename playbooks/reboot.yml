@@ -1,4 +1,6 @@
-- hosts: agents
+---
+- name: Reboot the agent
+  hosts: agents
 
   # To avoid to make unvailable all the agents in the same time, we do it in serial.
   serial: 1

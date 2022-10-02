@@ -1,4 +1,6 @@
-- hosts: agents
+---
+- name: Install the Node Version Manager (NVM)
+  hosts: agents
 
   vars_files:
     - /opt/ansible/vault_agents
@@ -9,7 +11,7 @@
       ansible.builtin.git:
         repo: https://github.com/creationix/nvm.git
         dest: "{{ ansible_env.HOME }}/.nvm"
-        version: "{% if nvm_version!='HEAD' %}v{% endif %}{{ nvm_version }}"
+        version: "{% if nvm_version != 'HEAD' %}v{% endif %}{{ nvm_version }}"
 
     - name: Export $NVM_DIR in ~/.profile
       ansible.builtin.lineinfile:

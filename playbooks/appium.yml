@@ -1,6 +1,7 @@
 ---
 # This playbook is to install/update Appium in all the agents
-- hosts: agents
+- name: Appium install or update
+  hosts: agents
   gather_facts: false
 
   tasks:

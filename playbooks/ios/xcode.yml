@@ -1,6 +1,7 @@
 ---
 # This playbook is to install Xcode in all the agents
-- hosts: agents
+- name: Install XCode
+  hosts: agents
 
   vars_files:
     - /opt/ansible/vault_agents

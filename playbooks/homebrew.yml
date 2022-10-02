@@ -1,5 +1,6 @@
 ---
-- hosts: agents
+- name: Homebrew packages install or update
+  hosts: agents
 
   vars_files:
     - /opt/ansible/vault_agents

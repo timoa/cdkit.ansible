@@ -1,9 +1,10 @@
 ---
-# This playbook is to install android SDK updates in all the GO agents
-- hosts: agents
+# This playbook is to update the Appcelerator CLI & Titanium SDK in all the agents
+- name: Appcelerator/Axway CLI & Titanium SDK update
+  hosts: agents
 
   # Since we logout/login for each agent, we need to do it in serial
-  # to avoid a logout during installation of one of the agent.
+  # to avoid a logout during update of one of the agent.
   serial: 1
 
   vars_files:
@@ -11,7 +12,7 @@
     - /opt/ansible/group_vars/agents.yml
 
   tasks:
-    - name: Update the Appcelerator package
+    - name: Update the Appcelerator CLI
       ansible.builtin.shell: . ~/.profile && npm update -g appcelerator
 
     - name: Use the latest Appcelerator CLI version

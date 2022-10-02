@@ -1,6 +1,7 @@
 ---
 # This playbook is to install the Appcelerator CLI & Titanium SDK in all the agents
-- hosts: agents
+- name: Appcelerator/Axway CLI & Titanium SDK install
+  hosts: agents
 
   # Since we logout/login for each agent, we need to do it in serial
   # to avoid a logout during installation of one of the agent.

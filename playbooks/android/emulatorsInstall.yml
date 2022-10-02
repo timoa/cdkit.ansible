@@ -1,6 +1,7 @@
 ---
 # This playbook is to install android SDK updates in all the agents
-- hosts: agents
+- name: Android Emulator install
+  hosts: agents
 
   tasks:
     - name: Updating Android packages list
