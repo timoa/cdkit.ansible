@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
 
       - name: Run ansible-lint
-        uses: ansible-community/ansible-lint-action@c00ea1b2ac047eaf7318275ac83a0cb846cea71a # tag=v6.2.1
+        uses: ansible-community/ansible-lint-action@98f605ebfe61d25ccbaaf090d5fc598a14bb35c6 # tag=v6.6.1
 
   # -- SAST SCAN --------------------------------------------------------------
   code-security:
