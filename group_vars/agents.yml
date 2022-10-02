@@ -2,9 +2,9 @@
 # Agents variables
 
 # Config
-xcode: True
-android_ndk: False
-macos_update_recommended_only: True
+xcode: true
+android_ndk: false
+macos_update_recommended_only: true
 
 # Versions
 android_build_tools: 28.0.3

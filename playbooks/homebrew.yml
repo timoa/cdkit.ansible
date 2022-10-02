@@ -1,5 +1,6 @@
 ---
-- hosts: agents
+- name: Homebrew packages install or update
+  hosts: agents
 
   vars_files:
     - /opt/ansible/vault_agents
@@ -23,66 +24,67 @@
       - java # Java for Go.CD agents
       - fastlane # iOS and Android automation
       - android-sdk # Android SDK (CLI only)
-      #- android-ndk # Android NDK (Optional)
+      # - android-ndk # Android NDK (Optional)
       - intel-power-gadget # Additionnal sensors for the monitoring
       - virtualbox # VM used by Genymotion
 
   tasks:
     - name: Set the LC_ALL to {{ locale }}.UTF-8
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export LC_ALL={{ locale }}.UTF-8"
 
     - name: Set the LANG to {{ locale }}.UTF-8
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export LANG={{ locale }}.UTF-8"
 
     - name: Add the Java home path to the $JAVA_HOME
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export JAVA_HOME=$(/usr/libexec/java_home)"
 
     - name: Add the Android home path to the $ANDROID_HOME
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export ANDROID_HOME=\"{{ android_sdk_path }}\""
 
     - name: Add the Android home path to the $ANDROID_SDK
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export ANDROID_SDK=$ANDROID_HOME"
 
     - name: Add the Android NDK path to the $ANDROID_NDK (optional)
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export ANDROID_NDK=\"{{ android_sdk_path }}\""
       when: android_ndk
 
     - name: Add $JAVA_HOME to the $PATH
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export PATH=$JAVA_HOME/bin:$PATH"
 
     - name: Add $ANDROID_HOME to the $PATH
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/:$PATH"
 
     - name: Add Python to the $PATH
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export PATH=/usr/local/opt/python/libexec/bin:$PATH"
 
     - name: Add Ruby to the $PATH
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export PATH=/usr/local/opt/ruby/bin:$PATH"
 
     - name: Add Fastlane to the $PATH
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.profile"
         line: "export PATH=$HOME/.fastlane/bin:$PATH"
 
   roles:
-    - geerlingguy.homebrew
+    - geerlingguy.mac.homebrew
+    - geerlingguy.mac.mas

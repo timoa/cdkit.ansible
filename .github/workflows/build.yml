@@ -9,11 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Harden GitHub Actions Runner
+        uses: step-security/harden-runner@1c4489aab205952ac7b3f21589149222832fe1b9
+        with:
+          egress-policy: audit
+
       - name: Checkout
-        uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
 
       - name: Run ansible-lint
-        uses: ansible-community/ansible-lint-action@ba54de22a6edeea3aa385cd8c5f20ec1f960a30b # tag=v6.0.2
+        uses: ansible-community/ansible-lint-action@98f605ebfe61d25ccbaaf090d5fc598a14bb35c6 # tag=v6.6.1
 
   # -- SAST SCAN --------------------------------------------------------------
   code-security:
@@ -23,8 +28,13 @@ jobs:
     if: (github.actor != 'dependabot[bot]')
 
     steps:
+      - name: Harden GitHub Actions Runner
+        uses: step-security/harden-runner@1c4489aab205952ac7b3f21589149222832fe1b9
+        with:
+          egress-policy: audit
+
       - name: Checkout
-        uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
 
       - name: Perform Scan
         uses: ShiftLeftSecurity/scan-action@master
@@ -34,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SCAN_ANNOTATE_PR: true
 
-      - uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535 # tag=v3.0.0
+      - uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3.1.0
         with:
           name: reports
           path: reports
@@ -46,10 +56,15 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
+      - name: Harden GitHub Actions Runner
+        uses: step-security/harden-runner@1c4489aab205952ac7b3f21589149222832fe1b9
+        with:
+          egress-policy: audit
+
       - name: Checkout
-        uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
 
       - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@e1fe1fc00a3729593e87efb2f88475de76d64a24 # tag=v3.1.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

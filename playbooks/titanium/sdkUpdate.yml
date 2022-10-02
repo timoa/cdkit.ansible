@@ -1,11 +1,10 @@
 ---
-
-
-# This playbook is to install android SDK updates in all the GO agents
-- hosts: agents
+# This playbook is to update the Appcelerator CLI & Titanium SDK in all the agents
+- name: Appcelerator/Axway CLI & Titanium SDK update
+  hosts: agents
 
   # Since we logout/login for each agent, we need to do it in serial
-  # to avoid a logout during installation of one of the agent.
+  # to avoid a logout during update of one of the agent.
   serial: 1
 
   vars_files:
@@ -13,17 +12,17 @@
     - /opt/ansible/group_vars/agents.yml
 
   tasks:
-  - name: Update the Appcelerator package
-    shell: . ~/.profile && npm update -g appcelerator
+    - name: Update the Appcelerator CLI
+      ansible.builtin.shell: . ~/.profile && npm update -g appcelerator
 
-  - name: Use the latest Appcelerator CLI version
-    shell: . ~/.profile && appc use latest
+    - name: Use the latest Appcelerator CLI version
+      ansible.builtin.shell: . ~/.profile && appc use latest
 
-  - name: Login to the Appcelerator/Axway platform
-    shell: . ~/.profile && appc login --username "{{ appc_username }}" --password "{{ appc_password }}" --org-id "{{ appc_org }}"
+    - name: Login to the Appcelerator/Axway platform
+      ansible.builtin.shell: . ~/.profile && appc login --username "{{ appc_username }}" --password "{{ appc_password }}" --org-id "{{ appc_org }}"
 
-  - name: Download the latest Titanium SDK
-    shell: . ~/.profile && echo "y" | appc ti sdk install latest
+    - name: Download the latest Titanium SDK
+      ansible.builtin.shell: . ~/.profile && echo "y" | appc ti sdk install latest
 
-  - name: Logout from the Appcelerator/Axway platform
-    shell: . ~/.profile && appc logout
+    - name: Logout from the Appcelerator/Axway platform
+      ansible.builtin.shell: . ~/.profile && appc logout
