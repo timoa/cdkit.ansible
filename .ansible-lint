@@ -31,8 +31,9 @@ use_default_rules: true
 #   - ./rule/directory/
 
 # This makes linter to fully ignore rules/tags listed below
-# skip_list:
-#   - skip_this_tag
+skip_list:
+  # Allow Jinja templating inside task and play names
+  - name[template]
 
 # Any rule that has the 'opt-in' tag will not be loaded unless its 'id' is
 # mentioned in the enable_list:
