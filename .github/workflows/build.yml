@@ -15,7 +15,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3.1.0
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
 
       - name: Run ansible-lint
         uses: ansible-community/ansible-lint-action@27c37f9001153675ee6abcadcd722bcbdafaba08 # v6.8.2
@@ -34,7 +34,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3.1.0
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
 
       - name: Perform Scan
         uses: ShiftLeftSecurity/scan-action@master
@@ -62,7 +62,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3.1.0
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
 
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@8f6ceb9d5aae5578b1dcda6af00008235204e7fa # v3.2.0
