@@ -32,7 +32,7 @@
         "renovate/renovate"
       ],
       "separateMinorPatch": true,
-      "stabilityDays": 15
+      "minimumReleaseAge": "15 days"
     }
   ]
 }
